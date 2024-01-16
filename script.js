@@ -1,6 +1,6 @@
 
 (function () {
-
+    // Check if the modal should be hidden based on previous interactions
     if( shouldHideModal() ) {
         return null;
     }
@@ -13,6 +13,7 @@
         }, 5000);
     }
     
+    // Close modal if overlay is clicked
     window.onclick = function (event) {
         let overlay = document.getElementById("overlay");
         if (event.target === overlay) {
@@ -20,7 +21,7 @@
         }
     };
 
-
+    // Function to display the modal
     function showModal() {
         let popupHtml = `    <div id="overlay"></div>
 
@@ -198,6 +199,7 @@
         });
     }
 
+    // Function to close the modal
     function closeModal() {
         if( !getCookie('modalClosed')) {
             // Set a cookie to remember that the popup has been closed
@@ -206,12 +208,14 @@
         document.getElementById("overlay").style.display = "none";
         document.getElementById("modal").style.display = "none";
     }
-      
+    
+    // Function to check if modal should be hidden based on previous interactions
     function shouldHideModal() {
         // Check if the popup has been closed previously
         return getCookie('modalClosed') === 'true';
     }
-    
+
+    // Function to handle form submission
     function submitForm(event) {
         event.preventDefault();
         
@@ -227,7 +231,9 @@
             closeModal();
         }
     }
-    
+
+
+    // Function to validate the name field
     function validateName(nameInput) {
         // Add your name validation logic here
         if ( nameInput.value.trim() === '' ) {
@@ -238,6 +244,7 @@
         return true;
     }
     
+    // Function to validate the email field
     function validateEmail(emailInput) {
         // Add your email validation logic here
         let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -249,6 +256,7 @@
         return true;
     }
     
+    // Function to validate the checkbox
     function validateCheckbox(checkbox) {
         // Add your checkbox validation logic here
         if (!checkbox.checked ) {
@@ -258,19 +266,19 @@
         }
         return true;
     }
-    
+
+    // Function to get the expiration date for the cookie
     function getExpirationDate() {
         let date = new Date();
         date.setTime(date.getTime() + (24 * 60 * 60 * 1000)); // Expires in 1 year
         return date.toUTCString();
     }
     
+    // Function to get the value of a cookie by name
     function getCookie(name) {
         let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
         if (match) return match[2];
     }
 
 
-}
-
-)();
+})();
