@@ -1,4 +1,3 @@
-
 (function () {
     // Check if the modal should be hidden based on previous interactions
     if( shouldHideModal() ) {
